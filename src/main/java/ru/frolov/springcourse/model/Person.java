@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Range;
 
 public class Person {
-    private static final String FULL_NAME_PATTERN = "[А-Я]\\w+ [А-Я]\\w+ [А-Я]\\w+";
+    private static final String FULL_NAME_PATTERN = "[А-Я][а-я]+ [А-Я][а-я]+ [А-Я][а-я]+";
     private static final String FULL_NAME_ERROR_MESSAGE = "Введите ФИО в корректном формате: Фамилия Имя Отчество";
 
     private static final int MIN_YEAR = 1900;
