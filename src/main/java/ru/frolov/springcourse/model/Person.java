@@ -9,7 +9,7 @@ public class Person {
     private static final String FULL_NAME_ERROR_MESSAGE = "Введите ФИО в корректном формате: Фамилия Имя Отчество";
 
     private static final int MIN_YEAR = 1900;
-    private static final int MAX_YEAR = 2023;
+    private static final int MAX_YEAR = 2022;
 
     private int id;
 
