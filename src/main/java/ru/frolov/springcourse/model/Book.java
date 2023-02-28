@@ -1,12 +1,22 @@
 package ru.frolov.springcourse.model;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
 public class Book {
+
+    public static final int MAX_LENGTH_FOR_AUTHOR = 128;
+
     private int id;
 
+    @NotNull
     private String title;
 
     private String author;
 
+    @Range(min = 1000, max = 2023)
     private int year;
 
     public Book(int id, String title, String author, int year) {
