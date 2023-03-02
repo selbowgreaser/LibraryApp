@@ -7,24 +7,21 @@ import org.hibernate.validator.constraints.Range;
 
 public class Book {
 
-    public static final int MAX_LENGTH_FOR_AUTHOR = 128;
-
     private int id;
 
     @NotNull
     private String title;
 
-    private String author;
+    private Author author;
+
+    private int authorId;
 
     @Range(min = 1000, max = 2023)
     private int year;
 
-    public Book(int id, String title, String author, int year) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.year = year;
-    }
+    private Person person;
+
+    private int personId;
 
     public Book() {
     }
@@ -33,31 +30,62 @@ public class Book {
         return id;
     }
 
-    public void setId(int id) {
+    public Book setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Book setTitle(String title) {
         this.title = title;
+        return this;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public Book setAuthor(Author author) {
         this.author = author;
+        return this;
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public Book setAuthorId(int authorId) {
+        this.authorId = authorId;
+        return this;
     }
 
     public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public Book setYear(int year) {
         this.year = year;
+        return this;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public Book setPerson(Person person) {
+        this.person = person;
+        return this;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public Book setPersonId(int personId) {
+        this.personId = personId;
+        return this;
     }
 }
