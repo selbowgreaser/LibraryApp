@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторы</title>
+</head>
+<body>
+
+<h1>
+    Авторы
+</h1>
+
+<hr th:if="${authors.size() != 0}">
+
+<div th:each="author : ${authors}">
+    <a th:href="@{/authors/{id}(id=${author.getId()})}" th:text="${author.getFullName()}">Author</a>
+</div>
+
+<hr th:if="${authors.size() != 0}">
+
+<form th:method="GET" th:action="@{/authors/new}">
+    <input type="submit" value="Добавить нового автора"/>
+</form>
+
+</body>
+</html>
