@@ -20,12 +20,6 @@ public class Person {
     @Range(min = MIN_YEAR, max = MAX_YEAR)
     private int birthYear;
 
-    public Person(int id, String fullName, int birthYear) {
-        this.id = id;
-        this.fullName = fullName;
-        this.birthYear = birthYear;
-    }
-
     public Person() {
     }
 
@@ -33,23 +27,26 @@ public class Person {
         return id;
     }
 
-    public void setId(int id) {
+    public Person setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public Person setFullName(String fullName) {
         this.fullName = fullName;
+        return this;
     }
 
     public int getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(int birthYear) {
+    public Person setBirthYear(int birthYear) {
         this.birthYear = birthYear;
+        return this;
     }
 }
