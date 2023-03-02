@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление нового автора</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/authors}" th:object="${author}">
+    <label for="fullName">Введите ФИО: </label>
+    <br/>
+    <input type="text" th:field="*{fullName}" id="fullName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Full Name Error</div>
+    <br/>
+    <br/>
+    <input type="submit" value="Добавить"/>
+    <br/>
+</form>
+
+<form th:action="@{/authors}" th:method="GET">
+    <input type="submit" value="Отмена" />
+</form>
+
+</body>
+</html>
