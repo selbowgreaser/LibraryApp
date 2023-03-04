@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.frolov.springcourse.dao.AuthorDAO;
 import ru.frolov.springcourse.model.Author;
 
@@ -42,6 +39,36 @@ public class AuthorController {
 
         authorDAO.addAuthor(author);
 
+        return "redirect:/authors";
+    }
+
+    @GetMapping("/{id}")
+    public String getAuthor(@PathVariable("id") int id, Model model) {
+        model.addAttribute("author", authorDAO.getAuthorById(id));
+        model.addAttribute("authorBooks", authorDAO.getAuthorBooks(id));
+        return "authors/author";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteAuthor(@PathVariable("id") int id) {
+        authorDAO.deleteAuthor(id);
+
+        return "redirect:/authors";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String getFormForEditAuthor(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", authorDAO.getAuthorById(id));
+        return "people/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateAuthor(@ModelAttribute("author") @Valid Author author, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "authors/edit";
+        }
+
+        authorDAO.updateAuthor(author);
         return "redirect:/authors";
     }
 }
