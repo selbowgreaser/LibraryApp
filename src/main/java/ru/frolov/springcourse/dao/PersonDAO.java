@@ -23,25 +23,21 @@ public class PersonDAO {
         return jdbcTemplate.query("SELECT * FROM person", new BeanPropertyRowMapper<>(Person.class));
     }
 
-    public Person getPersonPageById(int id) {
-        return jdbcTemplate.query(
+    public Person getPersonById(int id) {
+        return jdbcTemplate.queryForObject(
                 "SELECT * FROM person WHERE id = ?",
                         new BeanPropertyRowMapper<>(Person.class),
-                        id)
-                .stream()
-                .findAny()
-                .orElse(null);
-
+                        id);
     }
 
-    public void createPersonPage(Person person) {
+    public void addPerson(Person person) {
         jdbcTemplate.update(
                 "INSERT INTO person(full_name, birth_year) values (?, ?)",
                 person.getFullName(),
                 person.getBirthYear());
     }
 
-    public void updatePersonInfo(Person updatedPerson) {
+    public void updatePerson(Person updatedPerson) {
         jdbcTemplate.update(
                 "UPDATE person SET full_name = ?, birth_year = ? WHERE id = ?",
                 updatedPerson.getFullName(),
@@ -49,7 +45,7 @@ public class PersonDAO {
                 updatedPerson.getId());
     }
 
-    public void deletePersonPage(int id) {
+    public void deletePerson(int id) {
         jdbcTemplate.update(
                 "DELETE FROM person WHERE id = ?", id
         );
