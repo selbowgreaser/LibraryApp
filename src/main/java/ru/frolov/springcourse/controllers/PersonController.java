@@ -28,47 +28,47 @@ public class PersonController {
     }
 
     @GetMapping("/new")
-    public String getFormForCreatePersonPage(@ModelAttribute("person") Person person) {
+    public String getFormForAddPerson(@ModelAttribute("person") Person person) {
         return "people/new";
     }
 
     @PostMapping
-    public String createPersonPage(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+    public String addPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "people/new";
         }
 
-        personDAO.createPersonPage(person);
+        personDAO.addPerson(person);
 
         return "redirect:/people";
     }
 
     @GetMapping("/{id}")
-    public String getPersonInfo(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", personDAO.getPersonPageById(id));
+    public String getPerson(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", personDAO.getPersonById(id));
         model.addAttribute("personBooks", personDAO.getPersonBooks(id));
         return "/people/person";
     }
 
     @DeleteMapping("/{id}")
     public String deletePerson(@PathVariable("id") int id) {
-        personDAO.deletePersonPage(id);
+        personDAO.deletePerson(id);
         return "redirect:/people";
     }
 
     @GetMapping("/{id}/edit")
-    public String getFormForEditPersonInfo(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", personDAO.getPersonPageById(id));
+    public String getFormForEditPerson(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", personDAO.getPersonById(id));
         return "people/edit";
     }
 
     @PatchMapping("/{id}")
-    public String editPersonInfo(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+    public String editPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "people/edit";
         }
 
-        personDAO.updatePersonInfo(person);
+        personDAO.updatePerson(person);
         return "redirect:/people";
     }
 
