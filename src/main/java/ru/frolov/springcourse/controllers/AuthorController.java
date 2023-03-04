@@ -59,7 +59,7 @@ public class AuthorController {
     @GetMapping("/{id}/edit")
     public String getFormForEditAuthor(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", authorDAO.getAuthorById(id));
-        return "people/edit";
+        return "authors/edit";
     }
 
     @PatchMapping("/{id}")
