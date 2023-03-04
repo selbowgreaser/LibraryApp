@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.frolov.springcourse.model.Author;
+import ru.frolov.springcourse.model.Book;
 
 import java.util.List;
 
@@ -21,9 +22,34 @@ public class AuthorDAO {
         return jdbcTemplate.query("SELECT * FROM author", new BeanPropertyRowMapper<>(Author.class));
     }
 
+    public Author getAuthorById(int id) {
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM author WHERE id = ?",
+                new BeanPropertyRowMapper<>(Author.class),
+                id);
+    }
+
     public void addAuthor(Author author) {
         jdbcTemplate.update("INSERT INTO author(full_name) VALUES (?)",
                 author.getFullName());
     }
 
+    public void updateAuthor(Author updatedAuthor) {
+        jdbcTemplate.update("UPDATE author SET full_name = ? WHERE id = ?",
+                updatedAuthor.getFullName(),
+                updatedAuthor.getId());
+    }
+
+    public void deleteAuthor(int id) {
+        jdbcTemplate.update(
+                "DELETE FROM author WHERE id = ?", id
+        );
+    }
+
+    public List<Book> getAuthorBooks(int id) {
+        return jdbcTemplate.query(
+                "SELECT b.id, b.title, a.full_name, b.year FROM person p JOIN book b ON p.id = b.person_id JOIN author a ON a.id = b.author_id WHERE p.id = ?",
+                new BeanPropertyRowMapper<>(Book.class),
+                id);
+    }
 }
