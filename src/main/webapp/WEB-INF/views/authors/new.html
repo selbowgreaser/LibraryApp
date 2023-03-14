@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<div>
+    <a href="/people">Пользователи</a> <a href="/books">Книги</a> <a href="/authors">Авторы</a>
+</div>
+
 <form th:method="POST" th:action="@{/authors}" th:object="${author}">
     <label for="fullName">Введите ФИО: </label>
     <br/>
