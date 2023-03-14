@@ -48,7 +48,7 @@ public class AuthorDAO {
 
     public List<Book> getAuthorBooks(int id) {
         return jdbcTemplate.query(
-                "SELECT b.id, b.title, a.full_name, b.year FROM person p JOIN book b ON p.id = b.person_id JOIN author a ON a.id = b.author_id WHERE p.id = ?",
+                "SELECT b.id, b.title, a.full_name, b.book_year FROM book b JOIN author a ON a.id = b.author_id WHERE a.id = ?",
                 new BeanPropertyRowMapper<>(Book.class),
                 id);
     }
