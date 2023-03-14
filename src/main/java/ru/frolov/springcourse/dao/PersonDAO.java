@@ -26,8 +26,8 @@ public class PersonDAO {
     public Person getPersonById(int id) {
         return jdbcTemplate.queryForObject(
                 "SELECT * FROM person WHERE id = ?",
-                        new BeanPropertyRowMapper<>(Person.class),
-                        id);
+                new BeanPropertyRowMapper<>(Person.class),
+                id);
     }
 
     public void addPerson(Person person) {

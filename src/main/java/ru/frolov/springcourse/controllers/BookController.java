@@ -11,7 +11,6 @@ import ru.frolov.springcourse.dao.BookDAO;
 import ru.frolov.springcourse.dao.PersonDAO;
 import ru.frolov.springcourse.model.Author;
 import ru.frolov.springcourse.model.Book;
-import ru.frolov.springcourse.model.Person;
 
 @Controller
 @RequestMapping("/books")

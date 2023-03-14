@@ -1,8 +1,6 @@
 package ru.frolov.springcourse.model;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 public class Book {
