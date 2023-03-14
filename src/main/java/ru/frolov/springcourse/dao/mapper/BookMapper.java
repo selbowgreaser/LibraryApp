@@ -32,7 +32,7 @@ public class BookMapper implements RowMapper<Book> {
                 .setFullName(resultSet.getString(AUTHOR_FULL_NAME));
         book.setAuthor(author);
 
-        if (resultSet.getInt(6) == 0) {
+        if (resultSet.getInt(PERSON_ID) == 0) {
             return book;
         }
 
